@@ -1,0 +1,12 @@
+{% extends "gestionAlm/gestion/base.html" %}
+{% block nombre %}
+Gestion de productos
+{% endblock nombre %}
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
+

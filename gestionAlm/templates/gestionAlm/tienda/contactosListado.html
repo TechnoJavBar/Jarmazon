@@ -1,0 +1,30 @@
+{% extends "gestionAlm/tienda/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <table class="table" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <td style="background:black; color: white;">Fecha</td>
+                    <td style="background:black; color: white;">@E-mail</td>
+                    <td style="background:black; color: white;">Nombre</td>
+                    <td style="background:black; color: white;">Apellidos</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% if mensajes %}
+                    {% for mensaje in mensajes %}
+                        <tr>
+                            <td>{{mensaje.fecha}}</td>
+                            <td>{{mensaje.email}}</td>
+                            <td>{{mensaje.nombre}}</td>
+                            <td>{{mensaje.apellido}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                        <tr>Actualmente no existen mensajes</tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

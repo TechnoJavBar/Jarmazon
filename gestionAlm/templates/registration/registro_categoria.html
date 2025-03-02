@@ -1,0 +1,12 @@
+{% extends "gestionAlm/tienda/base.html" %}
+
+{% block nombre %}Nueva Categoría{% endblock %}
+
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}

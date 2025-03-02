@@ -1,0 +1,111 @@
+{% extends "gestionAlm/tienda/base.html" %}
+{% block content%}
+<div class="container">
+  <div class="row">
+      <div class="col">
+        <h2 style="margin: 10px 0 10px 35px; background: rgb(185, 178, 178); border-radius: 50px 10px 50px 10px; padding: 5px 5px 5px 18px; width: 320px;">
+          Listado de articulos</h2>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" 
+                style="margin-left: 45%; margin-top: 1%; width: 50px; height: 50px; position: fixed;">
+          <!-- <i class="fa-solid fa-filter"></i> -->
+          <i class="fa-solid fa-sliders"></i>
+      </button>
+      </div>
+
+      <!-- Empieza el filtro con el offcanvas -->
+      
+      
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filtrar</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <form method="GET">
+            <div class="col input-group p-3">
+              <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="form-control" name="filtro_nombre" placeholder="Buscar por nombre" value="{{request.GET.filtro_nombre}}" />
+            </div>
+            <div class="col p-3">
+              <select name="filtro_categoria" id="" class="form-control">
+                <option value="">Todas las categorias</option>
+                {% for categoria in categorias %}
+                  <option {%if request.GET.filtro_categoria == categoria.nombre%} selected {%endif%}>
+                    {{categoria.nombre}}
+                  </option>
+                    {% empty %}
+                    <option value="">No hay categorias existentes</option>
+                {%endfor%}
+              </select>
+            </div>
+            <div class="col p-3">
+              <input type="submit" value="Filtrar" class="btn btn-info" style="width: 200px;"/>
+            </div>
+          </form>
+        </div>
+      </div>
+
+<!-- termina el filtro y el offcanvas -->
+
+
+
+
+
+
+<div class="listado_productos">
+    {% if productos %}
+    <div class="row">
+        {%for producto in productos%}
+            <div class="col-md-3" >
+                <div class="card" style="width: 18rem; margin-left: 35px; margin-bottom: 10px; margin-top: 10px;">
+                    <img src="{{producto.imagen.url}}" class="card-img-top" alt="{{producto.titulo}}" width="100px" height="250px">
+                    <div class="card-body">
+                      <h5 class="card-title">{{producto.titulo}}</h5>
+                      <ul class="list-group">
+                        {% comment %} <li class="list-group-item disabled" aria-disabled="true">A disabled item</li> {% endcomment %}
+                        <li class="list-group-item" style="border: none;">Categoría: {{producto.categoria}}</li>
+                        <li class="list-group-item" style="border: none;">Precio: {{producto.precio}}€</li>
+                      </ul>
+                      <a href="{% url 'comprar_detalle' pk=producto.pk %}" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></a>
+                    </div>
+                  </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+    {% else %}
+    <h3>Actualmente no existen productos</h3>
+    {% endif %}
+    
+    <!-- empieza la paginaçao -->
+    <nav class="mt-4">
+      <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+              <li class="page-item">
+                  <a class="page-link" href="?page=1">&laquo; Primera</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+              </li>
+          {% endif %}
+  
+          <li class="page-item active">
+              <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+          </li>
+  
+          {% if page_obj.has_next %}
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+              </li>
+          {% endif %}
+      </ul>
+  </nav>
+
+    <!-- finaliza la paginaçao -->
+</div>
+{% endblock %}

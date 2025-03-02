@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+</head>
+<body>
+    <main class="main-container">
+        <section class="formulario">
+            <h1>Bienvenido a Jarmazon. Por favor, Inicia sesión</h1>
+
+            <!-- Formulario de inicio de sesión -->
+            <form method="post" aria-labelledby="login-form">
+                {% csrf_token %}
+                
+                <!-- Campo para el nombre de usuario -->
+                <div class="form-group">
+                    <label for="id_username" class="form-label">Nombre de usuario</label>
+                    {{ form.username }} <!-- Renderiza el campo de nombre de usuario -->
+                    {% if form.username.errors %}
+                        <ul class="error-list">
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Campo para la contraseña -->
+                <div class="form-group">
+                    <label for="id_password" class="form-label">Contraseña</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <ul class="error-list">
+                            {% for error in form.password.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+
+                <!-- Botón de inicio de sesión -->
+                <button type="submit" class="submit-button">Entrar <i class="fa-solid fa-circle-check"></i></button>
+            </form>
+
+            <!-- Enlaces para otras opciones -->
+            <div class="links">
+                <a href="{% url 'registro' %}" class="link">No tengo cuenta  <i class="fa-solid fa-user-plus"></i></a>
+                <a href="{% url 'index' %}" class="link">Prefiero seguir sin iniciar sesión  <i class="fa-solid fa-ghost"></i></a>
+            </div>
+        </section>
+    </main>
+    <script src="https://kit.fontawesome.com/cd718d4e13.js" crossorigin="anonymous"></script>
+</body>
+</html>

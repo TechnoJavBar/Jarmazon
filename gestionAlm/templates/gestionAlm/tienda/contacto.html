@@ -1,0 +1,141 @@
+{%extends "gestionAlm/tienda/base.html"%}
+{%block content%}
+    <div class="container bg-dark">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center text-white">¿Quieres contactarnos?</h1>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_email">E-mail</label>
+                        {{form.email}}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_nombre">Nombre</label>
+                        {{form.nombre}}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_apellido">Apellido</label>
+                        {{form.apellido}}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_mensaje">Mensaje</label>
+                        {{form.mensaje}}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col">
+
+            </div>
+        </div> -->
+
+
+<div class="row">
+    <div class="col-sm-5" style="margin-left: 8%;">
+        <h2>¿Quieres dejarnos un mensaje?</h2>
+
+        <p class="text-justify">Puedes rellenar el siguiente formulario indicando: 
+            <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Tu e-mail al cual quieres que contactemos</li>
+            <li class="list-group-item">Tu Nombre</li>
+            <li class="list-group-item">Tus Apellidos</li>
+            <li class="list-group-item">Describenos brevemente tu motivo de contactarnos</li>
+          </ol>
+          <br>
+          Para ello, pulse el botón <span>"Dejar un mensaje"</span> y nos pondremos en contacto con usted lo antes posible.
+        </p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          Dejar un mensaje <i class="fa-solid fa-message"></i>
+        </button>
+
+    </div>
+    <div class="col-sm-5">
+        <h2>¿Quieres contactarnos presencialmente?</h2>
+
+        <p class="text-justify">Puedes venir a visitarnos a nuestra tienda ubicada en la localidad de Burguillos, Sevilla</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d172.63705551325404!2d-5.971854465328004!3d37.59047278820225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd124416fa44137d%3A0xf8698458cfc2ed64!2sAv.%20Pepe%20Luna%2C%2041220%2C%20Sevilla!5e1!3m2!1ses!2ses!4v1739797082367!5m2!1ses!2ses" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h2>Nuestro horario:</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <td style="background: black; color: white;"><i class="fa-solid fa-clock"></i></td>
+              <td style="background: black; color: white;">Mañanas</td>
+              <td style="background: black; color: white;">Tardes</td>
+            </tr>
+          </thead>
+            <tr>
+                <td>Lunes</td>
+                <td>9:00 - 14:00</td>
+                <td>17:00 - 20:00</td>
+            </tr>
+            <tr>
+                <td>Martes</td>
+                <td>9:00 - 14:00</td>
+                <td>17:00 - 20:00</td>
+            </tr>
+            <tr>
+                <td>Miércoles</td>
+                <td>9:00 - 14:00</td>
+                <td>17:00 - 20:00</td>
+            </tr>
+            <tr>
+                <td>Jueves</td>
+                <td>9:00 - 14:00</td>
+                <td>17:00 - 20:00</td>
+            </tr>
+            <tr>
+                <td>Viernes</td>
+                <td>9:00 - 14:00</td>
+                <td>17:00 - 20:00</td>
+            </tr>
+            <tr>
+              <td>Sabados</td>
+              <td>9:00 - 14:00</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Formulaio de contacto</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form method="post">
+      {% csrf_token %}
+      {% comment %} <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">E-mail:</label>
+        {{form.email}}
+      </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">nombre</label>
+        {{form.nombre}}
+      </div>
+      <div class="mb-3">
+        <label for="recipient-name" class="col-form-label">Apellidos:</label>
+        {{form.apellido}}
+      </div>
+      <div class="mb-3">
+        <label for="message-text" class="col-form-label">Mensaje:</label>
+        {{form.mensaje}}
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div> {% endcomment %}
+      {{form.as_p}}
+      <button type="submit" class="btn btn-info"><i class="fa-solid fa-square-arrow-up-right"></i> Enviar</button>
+    </form>
+  </div>
+</div>
+{%endblock%}

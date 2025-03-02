@@ -1,0 +1,10 @@
+{% extends "gestionAlm/tienda/base.html" %}
+
+{% block content %}
+    <p>¿Quiere comprar {{unidades}} de {{producto.titulo}} por un total de {{pvpTotal}}€?
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="unidades" id="unidades" value="{{unidades}}">
+        <button type="submit">comprar</button>
+    </form>
+{% endblock %}

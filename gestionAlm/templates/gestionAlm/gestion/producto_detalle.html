@@ -1,0 +1,26 @@
+{% extends "gestionAlm/tienda/base.html" %}
+
+{%block nombre%}<h1>Detalle Producto {{producto.titulo}}</h1>{%endblock%}
+
+{%block content%}
+<div class="row">
+    <div class="col-sm-2">
+      <img src="{{ producto.imagen.url }}" alt="Foto de {{ producto.titulo }}" width="200px" height="200px" style="margin-left: 15%;">  
+    </div>
+    <div class="col-sm-10">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">nombre: {{producto.titulo}}</li>
+            <li class="list-group-item">Descripcion: {{producto.descripcion}}</li>
+            <li class="list-group-item">Categoría: {{producto.categoria}}</li>
+            <li class="list-group-item">Dimensiones: {{producto.dimensiones}}</li>
+            <li class="list-group-item">Cantidad: {{producto.cantidad}}</li>
+            <li class="list-group-item">UDS: {{producto.uds}}</li>
+            <li class="list-group-item">Precio: {{producto.precio}}€</li>
+        </ul>
+        <a href="{% url 'listado' %}"><button class="btn btn-success" style="margin-top: 10px">Volver</button></a>
+    </div>
+</div>
+
+
+
+{%endblock%}

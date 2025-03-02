@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+        <title>Usuario</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                
+                    <div class="col-sm-4" style="background-color: lightgray; text-align: center;">
+                        <img src="{{user.imagen.url}}" alt="{{user.nombre}}" style="width: 150px; height: 150px; border: solid 2px black; margin-top: 50px;" class="rounded-circle">
+                    </div>
+                
+                <div class="col-sm-8" style="margin-top: 20px;">
+                    <h4>¡Bienvenido, {{user.username}}!</h4>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Usuario</span>
+                        <input type="text" class="form-control" placeholder="{{user.username}}" aria-label="Username" readonly>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input type="text" class="form-control" placeholder="{{user.first_name}}" aria-label="Username" readonly>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Apellidos</span>
+                        <input type="text" class="form-control" placeholder="{{user.last_name}}" aria-label="Username" readonly>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">e-mail</span>
+                        <input type="text" class="form-control" placeholder="{{user.email}}" aria-label="Username" readonly>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Direccion</span>
+                        <input type="text" class="form-control" placeholder="{{user.direccion}}" aria-label="Username" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4" style="background-color: lightgray; text-align: justify; display: flex;">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %} 
+                        <button type="submit" class="btn btn-info" style="margin: 0 10px 10px 10px"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                    </form>
+
+                    <a href="{% url 'perfil_modificado' pk=user.pk %}"><button class="btn btn-warning" style="margin: 0 10px 10px 10px"><i class="fa-solid fa-user-pen"></i></button></a>
+                    <a href="#"><button class="btn btn-danger" style="margin: 0 10px 10px 10px"><i class="fa-solid fa-user-slash"></i></button></a>
+                </div>
+                <div class="col-sm-8">
+                     
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/cd718d4e13.js" crossorigin="anonymous"></script>
+    </body>
+</html>

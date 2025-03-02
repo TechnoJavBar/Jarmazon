@@ -1,0 +1,106 @@
+{% extends "gestionAlm/tienda/base.html" %}
+
+{% block content%}
+
+<div class="container">
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <div class="col">
+            <h3 style="margin: 10px 0 10px 35px; background: rgb(185, 178, 178); border-radius: 50px 10px 50px 10px; padding: 5px 5px 5px 18px; width: 320px;">
+                Listado de productos
+            </h3> 
+        </div>
+        <div class="col" style="text-align: left; margin-top: 1%; margin-left: 10%;">
+            <a href="{% url 'Crear_producto' %}"><button class="btn btn-info">Nuevo <i class="fa-solid fa-plus"></i></button></a>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" 
+                style="margin-left: 28%; margin-top: 0.5%; width: 50px; height: 50px; position: fixed;">
+          <!-- <i class="fa-solid fa-filter"></i> -->
+          <i class="fa-solid fa-sliders"></i>
+      </button>
+        </div>
+    </div>
+
+    {% comment %} empieza el offcanvas y el filtro {% endcomment %}
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filtrar</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <form method="GET">
+            <div class="col input-group p-3">
+              <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" class="form-control" name="filtro_nombre" placeholder="Buscar por nombre" value="{{request.GET.filtro_nombre}}" />
+            </div>
+            <div class="col p-3">
+              <select name="filtro_categoria" id="" class="form-control">
+                <option value="">Todas las categorias</option>
+                {% for categoria in categorias %}
+                  <option {%if request.GET.filtro_categoria == categoria.nombre%} selected {%endif%}>
+                    {{categoria.nombre}}
+                  </option>
+                    {% empty %}
+                    <option value="">No hay categorias existentes</option>
+                {%endfor%}
+              </select>
+            </div>
+            <div class="col p-3">
+              <input type="submit" value="Filtrar" class="btn btn-info" style="width: 200px;"/>
+            </div>
+          </form>
+        </div>
+      </div>
+
+        {% comment %} finaliza el offcanvas y filtro {% endcomment %}
+
+    <div class="row">
+        <div class="col-lg">
+            <ul class="list-group">
+            {% for producto in lista_productos%}
+            <li class="list-group-item">{{producto.titulo}} -- {{producto.precio}}
+                <div class="btn-group float-end" role="group" aria-label="Basic mixed styles example">
+                    <a href="{% url 'producto_detalle' pk=producto.pk %}"><button type="button" class="btn btn-success"><i class="fa-solid fa-circle-info"></i></button></a>
+                    <a href="{% url 'producto_modificado' pk=producto.pk %}"><button type="button" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></a>
+                    <a href="{% url 'producto_borrado' pk=producto.pk %}"><button type="button" class="btn btn-danger"><i class="fa-solid fa-circle-minus"></i></button></a>
+                  </div>
+            </li>
+            {% empty %}
+            <h3>No existen productos, cree uno nuevo</h3>
+
+            {%endfor%}
+        </div>
+    </div>
+
+    <!-- empieza la paginaçao -->
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo; Primera</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                </li>
+            {% endif %}
+    
+            <li class="page-item active">
+                <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            </li>
+    
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+  
+      <!-- finaliza la paginaçao -->
+
+</div>
+{% endblock %}

@@ -1,0 +1,102 @@
+/* Estilo global */
+body {
+    
+    font-family: 'Arial', sans-serif; /* Fuente limpia y moderna */
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000; /* Texto oscuro para contraste */
+    margin: 0;
+    padding: 0;
+    display: grid;
+    justify-items: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+/* Contenedor del formulario */
+form {
+    background-color: #21D4FD;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); /* Fondo cálido */
+    backdrop-filter: blur(19px);
+    opacity: 0.9;
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 30px; /* Espaciado interno */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+    display: grid; /* Usamos grid para estructurar el formulario */
+    gap: 15px; /* Espaciado entre los elementos */
+}
+
+/* Campos de entrada (inputs) */
+form input {
+    width: 95%; /* Los campos ocupan todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #000000; /* Borde de color cálido */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Campo de entrada al enfocarse */
+form input:focus {
+    border-color: #ff7043; /* Borde cálido al enfocar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 112, 67, 0.3); /* Efecto de iluminación */
+}
+
+form textarea {
+    width: 95%; /* Los campos ocupan todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #000000; /* Borde de color cálido */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Campo de entrada al enfocarse */
+form textarea:focus {
+    border-color: #ff7043; /* Borde cálido al enfocar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 112, 67, 0.3); /* Efecto de iluminación */
+}
+
+/* Botón de registro */
+form button {
+    background-color: #0a6bac; /* Naranja cálido */
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Botón al pasar el cursor */
+form button:hover {
+    background: linear-gradient(300deg,#1740c0,#1778c0,#17bdc0,#4951e5);
+    background-size: 240% 240%;
+    animation: gradient-animation 20s ease infinite;
+
+}
+
+.gradient-background {
+    background: linear-gradient(300deg,#1740c0,#1778c0,#17bdc0,#4951e5);
+    background-size: 240% 240%;
+    animation: gradient-animation 20s ease-in-out infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

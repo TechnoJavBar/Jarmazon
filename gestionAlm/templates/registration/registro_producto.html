@@ -1,0 +1,61 @@
+{% extends "gestionAlm/tienda/base.html" %}
+{% load static %}
+
+{% block content %}
+        <div class="container">
+            <h3 style="margin-top: 10px; padding: 3px 0 3px 18px; background-color: lightgray; border-radius: 50px 10px 50px 10px; width: 250px;">Nuevo producto</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row" style="margin-top: 20px; padding: 10px 0 10px 5px; border: none; border-radius: 10px 20px 20px 10px; border: solid 2px lightgray;">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="id_titulo" style="padding-bottom: 10px;">Titulo:</label>
+                            <br>
+                            {{form.titulo}}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_titulo" style="padding-bottom: 10px;">categoria</label>
+                            <br>
+                            {{form.categoria}}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_unidades" style="padding-bottom: 10px;">imagen:</label>
+                            <br>
+                            {{ form.imagen }}
+                        </div>
+                    </div>
+    
+                    <div class="col-md-4">
+                        <div class="form-group" style="padding-bottom: 10px;">
+                            <label for="id_precio">Precio:</label>
+                            <br>
+                            {{form.precio}}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_unidades" style="padding-bottom: 10px;">Unidades:</label>
+                            <br>
+                            {{ form.uds }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_unidades" style="padding-bottom: 10px;">Dimensiones:</label>
+                            <br>
+                            {{ form.dimensiones}}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_unidades" style="padding-bottom: 10px;">cantidad:</label>
+                            <br>
+                            {{ form.cantidad }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="id_descripcion">Descripcion:</label>
+                            <br>
+                            {{form.descripcion}}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" style="margin-top: 10px;">Dar de alta</button>
+            </form>
+        </div>
+{% endblock %}

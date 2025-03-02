@@ -1,0 +1,31 @@
+{% extends "gestionAlm/tienda/base.html" %}
+{% block content %}
+    <div class="container">
+        <table class="table table-hover" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th style="background: black; color: white;" scope="col">Fecha</th>
+                    <th style="background: black; color: white;" scope="col">Producto</th>
+                    <th style="background: black; color: white;" scope="col">Unidades</th>
+                    <th style="background: black; color: white;" scope="col">PVP Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if compras %}
+                    {% for compra in compras %}
+                        <tr>
+                            <td>{{compra.fecha}}</td>
+                            <td>{{compra.producto.titulo}}</td>
+                            <td>{{compra.cantidad}}</td>
+                            <td>{{compra.pvpTotal}}€</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>Actualmente no existen compras</tr>
+                    <tr><a href="{% url 'tienda' %}"><button class="btn btn-info">Comprar</button></a></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}

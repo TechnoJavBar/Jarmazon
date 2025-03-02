@@ -1,0 +1,19 @@
+{% extends "gestionAlm/tienda/base.html" %}
+{% block content %}
+
+<div class="container" style="margin:2% 2% 2% 6%; border: black 2px solid; border-radius: 10px; background: lightgray;">
+    <h2>Bienvenido, estos son los 5 productos que te has perdido</h2>
+<!-- Carrusel con las ultimos 5 productos añadidos -->
+    <div id="carouselExampleFade" class="carousel slide" data-bs-ride="carousel" style="width: 400px; margin-left: 35%;"">
+        <div class="carousel-inner text-center">
+            {% for producto in ultimosCincoProductos %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ producto.imagen.url }}" class="d-block" style="width: 350px; height: 350px;" alt="{{ producto.titulo }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+<!-- fin del carrusel -->
+</div>
+{% endblock %} 
+

@@ -1,0 +1,61 @@
+{% extends "gestionAlm/tienda/base.html" %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            
+        </div>
+        <div class="col ">
+            <h1 class="text-lg-center fw-bold ">{{producto.titulo}}</h1>
+        </div>
+        <div class="col">
+            
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <img src="{{producto.imagen.url}}" alt="{{prducto.titulo}}" style="width: 250px; height: 250px;">
+        </div>
+        <div class="col-6 ">
+            <ul class="list-group list-group-flush p-2">
+                <li class="list-group-item">Descripcion: {{producto.descripcion}}</li>
+                <li class="list-group-item">Dimensiones: {{producto.dimensiones}}</li>
+                {% if producto.cantidad not in 'n.a' and producto.cantidad not in 'N.A' %} <!--no se  muestra la cantidad si es n.a (nulo)-->
+                  <li class="list-group-item">Cantidad: {{producto.cantidad}}</li>
+                {%endif%}
+                <li class="list-group-item">Categoría: {{producto.categoria}}</li>
+                <li class="list-group-item" style="font-weight: bold;">Precio: {{producto.precio}}€</li> 
+            </ul>
+        </div>
+        <div class="col">
+            
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+            
+        </div>
+        <div class="col-6 d-flex mb-3">
+          <form action="{% url 'checkout' pk=producto.pk %}" method="get">
+            {% csrf_token %}
+            <div class="input-group mb-3 small text-center">
+                <span class="input-group-text">uds</span>
+                <input type="text" class="form-control small" name="unidades" placeholder="unidades" required>
+            </div>
+            <div class="btn-group p-1" role="group">      
+                <button type="submit" class="btn btn-success">Comprar</button>
+            </div>
+        </form>
+        
+          <a href="{% url 'tienda' %}"><button type="button" class="btn btn-warning">volver</button></a>
+        </div>
+        <div class="col">
+            
+        </div>
+      </div>
+</div>
+{% endblock %} 
